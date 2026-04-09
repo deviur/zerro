@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.gitignore
+.dockerignore
+*.md
+Dockerfile*
+*.dockerfile
+.env.development
+.env.production
+.editorconfig
+.prettierignore
+.sentryclirc
+vercel.json
+LICENSE

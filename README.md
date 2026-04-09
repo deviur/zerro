@@ -39,3 +39,12 @@ If you want to contribute, let's discuss the idea first here in issues or in [ch
 docker build -t zerro:dev .
 docker run -it -d --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true zerro:dev
 ```
+
+### Run local build in docker
+
+Build a production-ready image with all dependencies baked in:
+
+```bash
+docker build -t zerro:local -f local.dockerfile .
+docker run -d --name zerro-app -p 3000:3000 zerro:local
+```
