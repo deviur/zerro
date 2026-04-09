@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Zerro Launcher
+Comment=Запуск Zerro локально через Docker
+Exec=/path/to/zerro/scripts/zerro-local.sh
+Icon=/path/to/zerro/public/icons/192px.png
+Terminal=false
+Categories=Finance;
+StartupNotify=true

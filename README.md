@@ -48,3 +48,13 @@ Build a production-ready image with all dependencies baked in:
 docker build -t zerro:local -f local.dockerfile .
 docker run -d --name zerro-app -p 3000:3000 zerro:local
 ```
+
+### Quick install & launch
+
+Automatically build the image, install the launcher script and create a desktop shortcut:
+
+```bash
+./scripts/install.sh
+```
+
+After that, launch Zerro via the desktop icon or run `~/bin/zerro-launcher.sh`.
