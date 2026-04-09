@@ -98,7 +98,12 @@ if [ -d "$HOME/Рабочий стол" ]; then
 fi
 mkdir -p "$DESKTOP_DIR"
 
-ICON_PATH="$PROJECT_DIR/public/icons/192px.png"
+# Копируем иконку в постоянное место (не зависит от проекта)
+ICON_DIR="$HOME/.local/share/icons"
+ICON_PATH="$ICON_DIR/zerro-192px.png"
+mkdir -p "$ICON_DIR"
+cp "$PROJECT_DIR/public/icons/192px.png" "$ICON_PATH"
+echo "🖼️  Иконка скопирована в $ICON_PATH"
 
 cat > "$DESKTOP_DIR/Zerro.desktop" << DESKTOP
 [Desktop Entry]
