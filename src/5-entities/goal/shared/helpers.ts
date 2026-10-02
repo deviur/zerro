@@ -27,7 +27,7 @@ export const goalToWords = (
   { type, amount, end }: TGoal,
   currency?: TFxCode
 ): string => {
-  const sum = formatMoney(amount, currency, 0)
+  const sum = formatMoney(amount, currency, 'ifAny')
   switch (type) {
     case goalType.MONTHLY:
       return t('toWords.monthly', { sum, ns: 'goals' })
@@ -50,5 +50,5 @@ function monthSuffix(monthDate?: TDateDraft) {
   const isSameYear = new Date().getFullYear() === YYYY
   const yearAddon = isSameYear ? '' : ' ' + YYYY
   const context = date.getMonth() + 1
-  return ` ${t('toWords.till', { context, ns: 'goals' })}` + yearAddon
+  return ` ${t('toWords.till', { context: String(context), ns: 'goals' })}` + yearAddon
 }
