@@ -19,6 +19,10 @@ export default defineConfig({
       },
     }),
   ],
+  server: {          // ← добавьте это
+    host: true,      // или '0.0.0.0'
+    port: 3000,
+  },
   build: {
     outDir: 'dist',
     sourcemap: true,

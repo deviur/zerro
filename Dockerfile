@@ -7,7 +7,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install pnpm
-RUN npm install -g pnpm
+RUN npm install -g pnpm@10.33.2
 
 # install app dependencies
 COPY package.json pnpm-lock.yaml ./
@@ -17,4 +17,4 @@ RUN pnpm install
 COPY . ./
 
 # start app
-CMD ["pnpm", "run", "dev", "--", "--host"]
+CMD ["pnpm", "run", "dev", "--", "--host", "0.0.0.0"]
