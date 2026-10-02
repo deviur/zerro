@@ -33,28 +33,37 @@ If you want to contribute, let's discuss the idea first here in issues or in [ch
 4. `pnpm run dev` to run the development server on [http://localhost:3000](http://localhost:3000/)
 5. You are great
 
-### Run locally in docker
+### Run locally in a container (podman / docker)
+
+Build a production-ready image with the compiled app baked in — no source mount needed:
 
 ```bash
-docker build -t zerro:dev .
-docker run -it -d --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true zerro:dev
+podman build -t zerro:local -f local.dockerfile .
+podman run -d --name zerro-app -p 3000:3000 zerro:local
 ```
 
-### Run local build in docker
-
-Build a production-ready image with all dependencies baked in:
-
-```bash
-docker build -t zerro:local -f local.dockerfile .
-docker run -d --name zerro-app -p 3000:3000 zerro:local
-```
+Use `docker` instead of `podman` if that is what you have installed — the commands are identical.
 
 ### Quick install & launch
 
-Automatically build the image, install the launcher script and create a desktop shortcut:
+Build the image, install the launcher script and create a desktop shortcut in one step:
 
 ```bash
 ./scripts/install.sh
 ```
 
-After that, launch Zerro via the desktop icon or run `~/bin/zerro-launcher.sh`.
+The installer auto-detects whether `podman` or `docker` is available. Once installed, launch Zerro via the desktop icon or run `~/bin/zerro-launcher.sh`.
+
+The launcher:
+
+- starts the container if it is not running, waits until the app is ready,
+- opens the app in a Chrome/Chromium window in `--app` mode,
+- protects against double launches via `flock`,
+- stops the container when you close the app window.
+
+For dev mode with hot reload, use the original `Dockerfile`:
+
+```bash
+podman build -t zerro:dev .
+podman run -it -d --rm -v ${PWD}:/app -v /app/node_modules -p 3000:3000 -e CHOKIDAR_USEPOLLING=true zerro:dev
+```
